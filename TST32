@@ -88,10 +88,10 @@
 
 <script>
     const groups = {
-        grupoA: { password: "12345", scenario: "Trabalho a Quente", image: "Cenário 1.webp" },
-        grupoB: { password: "12345", scenario: "Trabalho em Altura", image: "Cenário 2.webp" },
-        grupoC: { password: "12345", scenario: "Movimentação de Cargas", image: "Cenário 3.webp" },
-        grupoD: { password: "12345", scenario: "Montagem e Desmontagem de Andaimes", image: "Cenário 4.webp" }
+        grupoA: { password: "12345", scenario: "Trabalho a Quente", image: "data:image/webp;base64,{{cenario_1_base64}}" },
+        grupoB: { password: "12345", scenario: "Trabalho em Altura", image: "data:image/webp;base64,{{cenario_2_base64}}" },
+        grupoC: { password: "12345", scenario: "Movimentação de Cargas", image: "data:image/webp;base64,{{cenario_3_base64}}" },
+        grupoD: { password: "12345", scenario: "Montagem e Desmontagem de Andaimes", image: "data:image/webp;base64,{{cenario_4_base64}}" }
     };
 
     const loginForm = document.getElementById("loginForm");
