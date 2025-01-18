@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de Avaliação de Cenários</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container, .scenario-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        input[type="text"], input[type="password"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container" id="login">
+    <h1>Login</h1>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Nome do Grupo" required />
+        <input type="password" id="password" placeholder="Senha" required />
+        <button type="submit">Entrar</button>
+    </form>
+    <p id="error" style="color: red; display: none;">Credenciais inválidas!</p>
+</div>
+
+<div class="scenario-container" id="scenario" style="display: none;">
+    <h1 id="scenarioTitle"></h1>
+    <img id="scenarioImage" src="" alt="Cenário" style="width: 100%; margin-bottom: 10px;" />
+    <form id="evaluationForm">
+        <label>Quais riscos o grupo consegue identificar nesse cenário?</label>
+        <textarea id="risks" rows="4" required></textarea>
+        
+        <label>Classificação dos Riscos</label>
+        <select id="riskSeverity" required>
+            <option value="">Gravidade</option>
+            <option value="Baixa">Baixa</option>
+            <option value="Média">Média</option>
+            <option value="Alta">Alta</option>
+        </select>
+        <select id="riskProbability" required>
+            <option value="">Probabilidade</option>
+            <option value="Baixa">Baixa</option>
+            <option value="Média">Média</option>
+            <option value="Alta">Alta</option>
+        </select>
+        
+        <label>Quais medidas de controle e prevenção poderiam ser adotadas?</label>
+        <textarea id="preventiveMeasures" rows="4" required></textarea>
+
+        <button type="submit">Enviar Respostas</button>
+    </form>
+</div>
+
+<script>
+    const groups = {
+        grupoA: { password: "12345", scenario: "Trabalho a Quente", image: "Cenário 1.webp" },
+        grupoB: { password: "12345", scenario: "Trabalho em Altura", image: "Cenário 2.webp" },
+        grupoC: { password: "12345", scenario: "Movimentação de Cargas", image: "Cenário 3.webp" },
+        grupoD: { password: "12345", scenario: "Montagem e Desmontagem de Andaimes", image: "Cenário 4.webp" }
+    };
+
+    const loginForm = document.getElementById("loginForm");
+    const scenarioContainer = document.getElementById("scenario");
+    const loginContainer = document.getElementById("login");
+    const errorText = document.getElementById("error");
+
+    loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        if (groups[username] && groups[username].password === password) {
+            loginContainer.style.display = "none";
+            scenarioContainer.style.display = "block";
+            document.getElementById("scenarioTitle").innerText = groups[username].scenario;
+            document.getElementById("scenarioImage").src = groups[username].image;
+        } else {
+            errorText.style.display = "block";
+        }
+    });
+
+    const evaluationForm = document.getElementById("evaluationForm");
+    evaluationForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("Respostas enviadas com sucesso!");
+        evaluationForm.reset();
+    });
+</script>
+
+</body>
+</html>
